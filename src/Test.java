@@ -1,4 +1,4 @@
-import de.beuth.algorithmen.sortierung.InsertionSort;
+import de.beuth.algorithmen.sortierung.QuickSort;
 import de.beuth.algorithmen.storage.Sortrunner;
 
 /**
@@ -6,6 +6,6 @@ import de.beuth.algorithmen.storage.Sortrunner;
  */
 public class Test {
     public static void main(String[] args){
-        Sortrunner.runSorting(new InsertionSort(), 10000, 0);
+        Sortrunner.runSorting(new QuickSort(), 60000, 0);
     }
 }
