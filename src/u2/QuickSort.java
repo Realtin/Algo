@@ -1,3 +1,5 @@
+package u2;
+
 import de.beuth.algorithmen.storage.Storage;
 
 /**

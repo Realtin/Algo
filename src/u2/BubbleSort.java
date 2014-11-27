@@ -1,5 +1,6 @@
+package u2;
+
 import de.beuth.algorithmen.storage.SortingAlgorithm;
-import de.beuth.algorithmen.storage.Sortrunner;
 import de.beuth.algorithmen.storage.Storage;
 
 /**
