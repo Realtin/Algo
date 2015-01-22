@@ -44,7 +44,19 @@ public class TreeNode {
      * @param v Der einzufügende Wert.
      */
     public void insertBelow(KeyAble v) {
-        // Implementieren Sie diese Methode aus!
+        if (v.getKey() < this.getContent().getKey()) {
+            if (this.getLeft() == null) {
+                left = new TreeNode(v);
+            } else {
+                left.insertBelow(v);
+            }
+        } else if (v.getKey() > this.getContent().getKey()) {
+            if (this.getRight() == null) {
+                right = new TreeNode(v);
+            } else {
+                right.insertBelow(v);
+            }
+        }
     }
 
 
@@ -53,7 +65,11 @@ public class TreeNode {
      * diesem Knoten.
      */
     public KeyAble getMaximum() {
-        // Implementieren Sie diese Methode aus!
+        KeyAble max = this.getContent();
+        if (this.getRight() != null) {
+            this.getRight().getMaximum();
+        }
+        return max;
     }
 
     /**
@@ -61,7 +77,11 @@ public class TreeNode {
      * diesem Knoten.
      */
     public KeyAble getMinimum() {
-        // Implementieren Sie diese Methode aus!
+        KeyAble min = this.getContent();
+        if (this.getLeft() != null) {
+            this.getLeft().getMinimum();
+        }
+        return min;
     }
 
 
@@ -75,7 +95,15 @@ public class TreeNode {
      * keinen Nachfolger im Baum, so wird null zurückgegeben.
      */
     public KeyAble getNachfolgerVon(KeyAble x) {
-
+        KeyAble val = null;
+        if (this.getRight() != null) {
+            if (this.getContent().getKey() == x.getKey()) {
+                val = this.getRight().getContent();
+            } else {
+                this.getRight().getVorgaengerVon(x);
+            }
+        }
+        return val;
     }
 
 
@@ -89,7 +117,15 @@ public class TreeNode {
      * keinen Vorgaenger im Baum, so wird null zurückgegeben.
      */
     public KeyAble getVorgaengerVon(KeyAble x) {
-
+        KeyAble val = null;
+        if (this.getLeft() != null) {
+            if (this.getContent().getKey() == x.getKey()) {
+                val = this.getLeft().getContent();
+            } else {
+                this.getLeft().getVorgaengerVon(x);
+            }
+        }
+        return val;
     }
 
 
@@ -99,7 +135,14 @@ public class TreeNode {
      * @return True genau dann, wenn sich x im Baum unter diesem Knoten befindet.
      */
     public boolean contains(KeyAble x) {
-
+        Boolean contains = false;
+        if (this.getVorgaengerVon(x) != null) {
+            contains = true;
+        }
+        if (this.getNachfolgerVon(x) != null) {
+            contains = true;
+        }
+        return contains;
     }
 
 
@@ -115,7 +158,16 @@ public class TreeNode {
      * besitzt. b und c hätten in diesem Beispiel keine Kinder.
      */
     public String toString() {
+        String right = "null";
+        String left = "null";
+        if (this.getRight() != null) {
+            right = this.getRight().toString();
+        }
+        if (this.getLeft() != null) {
+            left = this.getLeft().toString();
+        }
 
+        return "(" + this.getContent() + ": " + String.valueOf(left) + " " + String.valueOf(right) + " )";
     }
 
 }
